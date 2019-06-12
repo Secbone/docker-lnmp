@@ -8,6 +8,9 @@ services:
             - "./nginx/conf:/etc/nginx/conf"
             - "./nginx/log:/var/log/nginx"
             - "./www:www"
+        expose:
+            - "80"
+            - "443"
     # mariadb:
     #     image: "mariadb"
     #     environment:
