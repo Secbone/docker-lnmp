@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+    nginx:
+        image: "nginx:apline"
+        volumes:
+            - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
+            - "./nginx/conf:/etc/nginx/conf"
+            - "./nginx/log:/var/log/nginx"
+            - "./www:www"
+    # mariadb:
+    #     image: "mariadb"
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: "password"
+    #         MYSQL_USER: "test_user"
+    #         MYSQL_PASSWORD: "test_pass"
+    #         MYSQL_DATABASE: "test_db"
