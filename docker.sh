@@ -20,3 +20,12 @@ yum-config-manager \
 yum install -y docker-ce docker-ce-cli containerd.io
 
 systemctl start docker
+
+
+# fix mariadb permission
+sudo chown -R 999:999 socks
+
+
+
+docker exec lnmp_php_fpm docker-php-ext-install mysqli pdo_mysql && docker-php-ext-enable mysqli pdo_mysql
+docker restart lnmp_php_fpm

@@ -2,31 +2,55 @@ version: "3"
 
 services:
     nginx:
+        container_name: "lnmp_nginx"
         image: "nginx:alpine"
         volumes:
             - "./nginx/nginx.conf:/etc/nginx/nginx.conf"
             - "./nginx/conf:/etc/nginx/conf"
-            - "./logs/nginx:/var/log/nginx"
-            - "./socks:/socks"
+            - "./logs/nginx:/var/log/nginx:rw"
+            - "./socks:/socks:rw"
             - "./www:/www"
         ports:
             - "80:80"
             - "443:443"
         depends_on:
           - php-fpm
+
+    caddy:
+        container_name: "lnmp_caddy"
+        image: "abiosoft/caddy"
+        volumes:
+            - "./caddy/Caddyfile:/etc/Caddyfile"
+            - "./caddy/data:/root/.caddy"
+            - "./logs/caddy:/logs:rw"
+            - "./socks:/socks:rw"
+            - "./www:/www"
+        ports:
+            - "80"
+            - "443"
+
     php-fpm:
-      image: "php:fpm-alpine"
-      volumes:
+        container_name: "lnmp_php_fpm"
+        image: "php:fpm-alpine"
+        volumes:
             - "./php-fpm/php.ini:/usr/local/etc/php/php.ini"
             - "./php-fpm/php-fpm.conf:/usr/local/etc/php-fpm.d/zz-docker.conf"
-            - "./socks:/socks"
+            - "./logs/php:/logs:rw"
+            - "./socks:/socks:rw"
             - "./www:/www"
-            - "./logs/php:/logs"
 
-    # mariadb:
-    #     image: "mariadb"
-    #     environment:
-    #         MYSQL_ROOT_PASSWORD: "password"
-    #         MYSQL_USER: "test_user"
-    #         MYSQL_PASSWORD: "test_pass"
-    #         MYSQL_DATABASE: "test_db"
+    mariadb:
+        container_name: "lnmp_mariadb"
+        image: "mariadb"
+        user: mysql
+        volumes:
+              - "./mariadb/my.cnf:/etc/mysql/conf.d/my.cnf"
+              - "./mariadb/data:/var/lib/mysql:rw"
+              - "./logs/mariadb:/logs:rw"
+              - "./socks:/socks:rw"
+
+        environment:
+            MYSQL_ROOT_PASSWORD: "password"
+            MYSQL_USER: "test_user"
+            MYSQL_PASSWORD: "test_pass"
+            MYSQL_DATABASE: "test_db"
