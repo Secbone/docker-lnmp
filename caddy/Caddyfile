@@ -1,9 +1,0 @@
-http://localhost {
-  gzip
-  root /www
-  tls off
-
-  fastcgi / /socks/php-cgi.sock php {
-    root /www
-  }
-}
