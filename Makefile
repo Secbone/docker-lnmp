@@ -6,9 +6,8 @@ COMPOSE = docker-compose -f compose.yml
 
 
 init:
-	docker build --build-arg plugins=git,cors,realip,expires,cache,cloudflare,dnspod,godaddy,googlecloud,linode github.com/abiosoft/caddy-docker.git -t caddy
-	
-	mkdir mariadb/data
+	docker build --build-arg plugins=git,cors,realip,expires,cache,cloudflare,godaddy,googlecloud,linode github.com/abiosoft/caddy-docker.git -t caddy
+
 	sudo chown -R 999:999 socks mariadb/data
 
 	$(COMPOSE) up -d
