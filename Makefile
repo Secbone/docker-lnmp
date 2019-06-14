@@ -6,7 +6,8 @@ COMPOSE = docker-compose -f compose.yml
 
 
 init:
-	sudo chown -R 999:999 socks
+	mkdir mariadb/data
+	sudo chown -R 999:999 socks mariadb/data
 
 	$(COMPOSE) up -d
 

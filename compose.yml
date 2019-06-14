@@ -5,6 +5,8 @@ services:
     caddy:
         container_name: "lnmp_caddy"
         image: "abiosoft/caddy"
+        environment:
+            ACME_AGREE: true
         volumes:
             - "./caddy/Caddyfile:/etc/Caddyfile"
             - "./caddy/data:/root/.caddy"
