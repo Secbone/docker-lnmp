@@ -4,7 +4,7 @@ services:
 
     caddy:
         container_name: "lnmp_caddy"
-        image: "abiosoft/caddy"
+        image: "caddy"
         environment:
             ACME_AGREE: "true"
         volumes:
