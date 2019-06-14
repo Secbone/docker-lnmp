@@ -2,3 +2,4 @@
 logs
 certs
 mariadb/data
+caddy/data

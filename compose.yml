@@ -26,8 +26,8 @@ services:
             - "./socks:/socks:rw"
             - "./www:/www"
         ports:
-            - "80"
-            - "443"
+            - "80:80"
+            - "443:443"
 
     php-fpm:
         container_name: "lnmp_php_fpm"
