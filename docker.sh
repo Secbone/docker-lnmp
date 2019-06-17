@@ -28,10 +28,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 
-# fix mariadb permission
-sudo chown -R 999:999 socks
-
-
-
-docker exec lnmp_php_fpm docker-php-ext-install mysqli pdo_mysql && docker-php-ext-enable mysqli pdo_mysql
-docker restart lnmp_php_fpm
+# git
+sudo yum -y remove git
+sudo yum -y install  https://centos7.iuscommunity.org/ius-release.rpm
+sudo yum -y install  git2u-all

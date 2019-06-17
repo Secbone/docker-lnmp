@@ -22,5 +22,8 @@ start:
 stop:
 	$(COMPOSE) stop
 
+restart:
+	$(COMPOSE) restart
+
 clean:
 	$(COMPOSE) down

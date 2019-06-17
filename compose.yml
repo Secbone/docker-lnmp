@@ -5,8 +5,8 @@ services:
     caddy:
         container_name: "lnmp_caddy"
         image: "caddy"
-        environment:
-            ACME_AGREE: "true"
+        env_file:
+            - caddy/setting.env
         volumes:
             - "./caddy/Caddyfile:/etc/Caddyfile"
             - "./caddy/data:/root/.caddy"
@@ -36,9 +36,5 @@ services:
             - "./mariadb/data:/var/lib/mysql:rw"
             - "./logs/mariadb:/logs:rw"
             - "./socks:/socks:rw"
-
-        environment:
-            MYSQL_ROOT_PASSWORD: "password"
-            MYSQL_USER: "test_user"
-            MYSQL_PASSWORD: "test_pass"
-            MYSQL_DATABASE: "test_db"
+        env_file:
+            - mariadb/setting.env
