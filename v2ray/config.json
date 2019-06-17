@@ -1,0 +1,43 @@
+{
+  "log" : {
+    "access": "/logs/access.log",
+    "error": "/logs/error.log",
+    "loglevel": "warning"
+  },
+  "inbounds": [{
+    "port": 1080,
+    "protocol": "vmess",
+    "settings": {
+      "clients": [
+        {
+          "id": "user-id",
+          "level": 1,
+          "alterId": 64
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "ws",
+      "wsSettings": {
+        "path": "/ws"
+      }
+    }
+  }],
+  "outbounds": [{
+    "protocol": "freedom",
+    "settings": {}
+  },{
+    "protocol": "blackhole",
+    "settings": {},
+    "tag": "blocked"
+  }],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "ip": ["geoip:private"],
+        "outboundTag": "blocked"
+      }
+    ]
+  }
+}

@@ -6,4 +6,9 @@ http://localhost {
   fastcgi / /socks/php-cgi.sock php {
     root /www
   }
+
+  proxy /ws/ v2ray:1080 {
+    websocket
+    header_upstream -Origin
+  }
 }
