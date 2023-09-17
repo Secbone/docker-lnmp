@@ -12,7 +12,7 @@
         {
           "id": "user-id",
           "level": 1,
-          "alterId": 64
+          "email": "user@name.domain"
         }
       ]
     },
